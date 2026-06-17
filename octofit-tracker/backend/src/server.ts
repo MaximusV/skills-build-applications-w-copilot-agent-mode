@@ -37,6 +37,7 @@ export function getCodespacesUrl(port: number): string | null {
 }
 
 export function startServer(app: Express, port: number): void {
+  const codespaceBaseUrl = '8000.app.github.dev';
   const codespaceUrl = getCodespacesUrl(port);
   
   app.listen(port, () => {
