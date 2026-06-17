@@ -1,7 +1,10 @@
 const CODESPACE_NAME = import.meta.env.VITE_CODESPACE_NAME;
 const PORT = 8000;
+const IS_DEV = import.meta.env.DEV;
 
-export const API_BASE_URL = CODESPACE_NAME
+export const API_BASE_URL = IS_DEV
+  ? '/api'
+  : CODESPACE_NAME
   ? `https://${CODESPACE_NAME}-${PORT}.app.github.dev/api`
   : `http://localhost:${PORT}/api`;
 
