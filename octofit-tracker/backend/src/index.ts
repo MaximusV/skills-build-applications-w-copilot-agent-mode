@@ -24,10 +24,10 @@ app.get('/', (req, res) => {
 
 // Construct Codespaces-aware public URL when running inside Codespaces
 function codespacesUrl(port: number) {
-  const name = process.env.CODESPACE_NAME || process.env.CODESPACE; // fallback
+  const name = process.env.CODESPACE_NAME;
   if (!name) return null;
-  // GitHub Codespaces preview pattern (may vary) — provide the common preview host
-  return `https://${name}-${port}.githubpreview.dev`;
+  // GitHub Codespaces preview URL pattern
+  return `https://${name}-${port}.app.github.dev`;
 }
 
 connectDB()
