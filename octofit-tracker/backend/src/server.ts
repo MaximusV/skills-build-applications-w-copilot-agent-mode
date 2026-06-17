@@ -27,6 +27,7 @@ export function createServer(): Express {
 /**
  * Construct Codespaces-aware public URL when running inside GitHub Codespaces.
  * Checks for CODESPACE_NAME environment variable and builds the preview URL.
+ * e.g 8000.app.github.dev
  */
 export function getCodespacesUrl(port: number): string | null {
   const name = process.env.CODESPACE_NAME;
