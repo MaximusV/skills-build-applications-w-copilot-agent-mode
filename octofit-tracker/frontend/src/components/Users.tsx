@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { apiUrl } from '../api';
 
 const fetchUsers = async () => {
-  const response = await fetch(apiUrl('/api/users'));
+  const response = await fetch(`https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users`);
   return response.json();
 };
 

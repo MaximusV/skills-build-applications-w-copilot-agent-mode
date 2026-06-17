@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { apiUrl } from '../api';
 
 const fetchLeaderboard = async () => {
-  const response = await fetch(apiUrl('/api/leaderboard'));
+  const response = await fetch(`https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard`);
   return response.json();
 };
 
