@@ -1,5 +1,5 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import connectDB from './config/database';
 import usersRouter from './routes/users';
 import teamsRouter from './routes/teams';
 import activitiesRouter from './routes/activities';
@@ -8,7 +8,6 @@ import workoutsRouter from './routes/workouts';
 
 const app = express();
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8000;
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/octofit_db';
 
 app.use(express.json());
 
@@ -31,7 +30,7 @@ function codespacesUrl(port: number) {
   return `https://${name}-${port}.githubpreview.dev`;
 }
 
-mongoose.connect(MONGO_URL)
+connectDB()
   .then(() => {
     console.log('Connected to MongoDB');
     app.listen(PORT, () => {
