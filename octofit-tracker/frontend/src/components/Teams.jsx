@@ -1,0 +1,35 @@
+import { useEffect, useState } from 'react';
+import { apiUrl } from '../api';
+
+const fetchTeams = async () => {
+  const response = await fetch(`https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams`);
+  return response.json();
+};
+
+export default function Teams() {
+  const [teams, setTeams] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchTeams()
+      .then((data) => {
+        const payload = Array.isArray(data) ? data : data.teams ?? [];
+        setTeams(payload);
+      })
+      .catch((err) => setError(err.message));
+  }, []);
+
+  return (
+    <section>
+      <h2>Teams</h2>
+      {error && <p className="error">{error}</p>}
+      <ul>
+        {teams.map((team) => (
+          <li key={team._id ?? team.id}>
+            {team.name} ({team.members?.length ?? 0} members)
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
