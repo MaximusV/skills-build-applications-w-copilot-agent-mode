@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { apiUrl } from '../api';
 
 const fetchTeams = async () => {
-  const response = await fetch(apiUrl('/teams'));
+  const response = await fetch(apiUrl('/api/teams'));
   return response.json();
 };
 

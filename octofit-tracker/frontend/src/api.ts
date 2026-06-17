@@ -3,10 +3,10 @@ const PORT = 8000;
 const IS_DEV = import.meta.env.DEV;
 
 export const API_BASE_URL = IS_DEV
-  ? '/api'
+  ? ''
   : CODESPACE_NAME
-  ? `https://${CODESPACE_NAME}-${PORT}.app.github.dev/api`
-  : `http://localhost:${PORT}/api`;
+  ? `https://${CODESPACE_NAME}-${PORT}.app.github.dev`
+  : `http://localhost:${PORT}`;
 
 export function apiUrl(path: string): string {
   const sanitizedPath = path.startsWith('/') ? path : `/${path}`;

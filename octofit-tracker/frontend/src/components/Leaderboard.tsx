@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { apiUrl } from '../api';
 
 const fetchLeaderboard = async () => {
-  const response = await fetch(apiUrl('/leaderboard'));
+  const response = await fetch(apiUrl('/api/leaderboard'));
   return response.json();
 };
 
