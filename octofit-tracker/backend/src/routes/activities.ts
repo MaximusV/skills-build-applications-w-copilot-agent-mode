@@ -1,16 +1,19 @@
 import { Router } from 'express';
+import Activity from '../models/Activity';
 
 const router = Router();
 
 // GET /api/activities/ - list activities
-router.get('/', (req, res) => {
-  res.json({ activities: [] });
+router.get('/', async (req, res) => {
+  const activities = await Activity.find().populate('user team workout').lean();
+  res.json({ activities });
 });
 
-// POST /api/activities/ - log activity (placeholder)
-router.post('/', (req, res) => {
+// POST /api/activities/ - log activity
+router.post('/', async (req, res) => {
   const payload = req.body;
-  res.status(201).json({ activity: payload });
+  const activity = await Activity.create(payload);
+  res.status(201).json({ activity });
 });
 
 export default router;
